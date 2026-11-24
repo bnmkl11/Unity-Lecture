@@ -3,7 +3,10 @@ using UnityEngine;
 public class PlayerKeyMove : MonoBehaviour
 {
     public float moveSpeed = 5f;
+
+    [SerializeField]
     private float turnSpeed = 90f;
+
     public GameObject bulletPrefab;
 
     // Update is called once per frame
@@ -29,7 +32,23 @@ public class PlayerKeyMove : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(bulletPrefab, transform.position, transform.rotation);
+            GameObject copiedBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            Bullet bullet = copiedBullet.GetComponent<Bullet>();
+            // GetComponent 메소드를 통해서 해당 컴포넌트가 존재하지 않으면 
+            // null을 반환합니다.
+            // 이미 존재하는 컴포넌트면 해당 컴포넌트를 찾아서 반환을 해줍니다.
+            if (bullet == null)
+                return;
+
+            //SphereCollider collider = copiedBullet.GetComponent<SphereCollider>();
+            //collider.radius = 100;
+
+            MeshRenderer meshRenderer = copiedBullet.GetComponent<MeshRenderer>();
+            meshRenderer.material.color = Color.red;
+
+            // bullet.Fire();
+
+            BulletTest bulletTest = bullet.gameObject.AddComponent<BulletTest>();
         }
     }
 }
