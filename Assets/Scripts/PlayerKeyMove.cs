@@ -9,6 +9,18 @@ public class PlayerKeyMove : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    // 코인 먹기용 점수 스코어.
+    private int score;
+
+    /// <summary>
+    ///  점수를 증가시켜주는 메소드.
+    /// </summary>
+    /// <param name="score"></param>
+    public void AddScore(int score)
+    {
+        this.score += score;
+    }
+
     // Update is called once per frame
     void Update()
     {

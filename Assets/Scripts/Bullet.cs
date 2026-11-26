@@ -20,20 +20,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //// 플레이어 태그를 가지면 예외처리!!
-        //if (other.gameObject.tag == "Player")
-        //    return;
-
-        //Debug.Log("Bullet이 " + other.gameObject.name + " 부딫혔다!!");
-
-        //if (other.gameObject.tag == "Enemy")
-        //{
-        //    Debug.Log("적을 맞춤!!!");
-        //    Destroy(other.gameObject);
-        //}
-
-        //Destroy(gameObject);
-
         if (other.gameObject.tag == "Enemy")
             Debug.Log("처음 부딫힘!!!");
 
@@ -41,19 +27,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // 플레이어 태그를 가지면 예외처리!!
-        if (collision.gameObject.tag == "Player")
-            return;
-
-        Debug.Log("Bullet이 " + collision.gameObject.name + " 부딫혔다!!");
-
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Debug.Log("적을 맞춤!!!");
-            Destroy(collision.gameObject);
-        }
-
-        Destroy(gameObject);
+        
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
