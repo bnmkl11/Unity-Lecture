@@ -5,6 +5,14 @@ public class Coin : MonoBehaviour
     [SerializeField]
     private int score = 10;
 
+    // 동전의 회전하는 스피드.
+    public float turnSpeed = 90;
+
+    private void Update()
+    {
+        transform.Rotate (Vector3.up * turnSpeed * Time.deltaTime, Space.World);
+    }
+
     // 코인이 플레이어랑 닿으면 플레이어의 점수를 증가시켜준다.
     private void OnTriggerEnter(Collider other)
     {

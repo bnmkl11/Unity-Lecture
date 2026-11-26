@@ -5,6 +5,9 @@ public class Bullet : MonoBehaviour
 {
     float speed = 10;
 
+    [SerializeField]
+    private int damage = 1;
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -20,14 +23,31 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
-            Debug.Log("처음 부딫힘!!!");
+        if (other.gameObject.tag == "Player")
+            return;
 
+        Debug.Log("Bullet " + other.gameObject.name + " 가 사라진다!");
+
+        // 적이랑 부딫힌 경우.
+        if (other.gameObject.tag == "Enemy")
+        {
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            // Enemy 컴포넌트를 가진경우. 
+            if (enemy != null)
+            {
+                // 적의 체력을 깍는 기능 여기다가 실행!!!.
+                enemy.Hp -= damage;
+
+                Debug.Log("나 사라짐!!!");
+            }
+        }
+
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
