@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
         Debug.Log("Bullet " + other.gameObject.name + " 가 사라진다!");
 
         // 적이랑 부딫힌 경우.
-        if (other.gameObject.tag == "Enemy")
+          if (other.gameObject.tag == "Enemy")
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             // Enemy 컴포넌트를 가진경우. 
